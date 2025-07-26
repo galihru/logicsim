@@ -847,7 +847,6 @@ class DigitalLogicSimulator {
             const label = document.createElement('span');
             label.textContent = `Input ${index + 1}`;
             label.style.fontWeight = 'bold';
-            label.style.color = '#4a5568';
 
             // Add current value display
             const valueDisplay = document.createElement('span');
@@ -1522,7 +1521,7 @@ class DigitalLogicSimulator {
         let resultHTML = '<div class="simulation-results">';
 
         // Current state header
-        resultHTML += '<h3 style="color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">🔄 Current Simulation State</h3>';
+        resultHTML += '<h3 style="margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">🔄 Current Simulation State</h3>';
 
         // Input values section
         if (inputGates.length > 0) {
