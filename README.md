@@ -1,10 +1,5 @@
 # Digital Logic Simulator
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PWA](https://img.shields.io/badge/PWA-Enabled-blue.svg)](https://web.dev/progressive-web-apps/)
-[![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/your-username/digital-logic-simulator)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/your-username/digital-logic-simulator)
-
 A modern, interactive web-based digital logic circuit simulator with comprehensive educational features, real-time simulation capabilities, and advanced visualization tools. Built as a Progressive Web Application (PWA) for seamless cross-platform experience.
 
 ## 🎯 Abstract
