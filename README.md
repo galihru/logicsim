@@ -368,7 +368,7 @@ DigitalLogicSimulator
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/digital-logic-simulator.git
+git clone https://github.com/galihru/logicsim.git
 
 # Navigate to the project directory
 cd digital-logic-simulator
@@ -635,20 +635,13 @@ git push origin feature/new-gate-type
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- Boolean algebra foundations by George Boole
-- Digital design principles by John Wakerly
-- Modern web standards by W3C
-- Accessibility guidelines by WCAG
-
 ## 📞 Support
 
 For technical support, educational inquiries, or collaboration opportunities:
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/digital-logic-simulator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/digital-logic-simulator/discussions)
-- **Documentation**: [Wiki](https://github.com/your-username/digital-logic-simulator/wiki)
+- **Issues**: [GitHub Issues](https://github.com/galihru/logicsim/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/galihru/logicsim/discussions)
+- **Documentation**: [Wiki](https://github.com/galihru/logicsim/wiki)
 
 ---
 
