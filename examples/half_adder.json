@@ -1,0 +1,92 @@
+{
+    "gates": [
+        {
+            "id": "gate_0",
+            "type": "INPUT",
+            "x": 50,
+            "y": 80,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_1",
+            "type": "INPUT",
+            "x": 50,
+            "y": 180,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_2",
+            "type": "XOR",
+            "x": 200,
+            "y": 100,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_3",
+            "type": "AND",
+            "x": 200,
+            "y": 200,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_4",
+            "type": "OUTPUT",
+            "x": 350,
+            "y": 100,
+            "outputValues": []
+        },
+        {
+            "id": "gate_5",
+            "type": "OUTPUT",
+            "x": 350,
+            "y": 200,
+            "outputValues": []
+        }
+    ],
+    "wires": [
+        {
+            "sourceGate": "gate_0",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_2",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_1",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_2",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_0",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_3",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_1",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_3",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_2",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_4",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_3",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_5",
+            "targetPinIndex": 0
+        }
+    ]
+}

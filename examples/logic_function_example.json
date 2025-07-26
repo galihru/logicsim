@@ -1,0 +1,124 @@
+{
+    "gates": [
+        {
+            "id": "gate_0",
+            "type": "INPUT",
+            "x": 50,
+            "y": 80,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_1",
+            "type": "INPUT",
+            "x": 50,
+            "y": 150,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_2",
+            "type": "INPUT",
+            "x": 50,
+            "y": 220,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_3",
+            "type": "NOT",
+            "x": 150,
+            "y": 80,
+            "outputValues": [
+                1
+            ]
+        },
+        {
+            "id": "gate_4",
+            "type": "AND",
+            "x": 250,
+            "y": 120,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_5",
+            "type": "AND",
+            "x": 250,
+            "y": 200,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_6",
+            "type": "OR",
+            "x": 380,
+            "y": 160,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_7",
+            "type": "OUTPUT",
+            "x": 500,
+            "y": 160,
+            "outputValues": []
+        }
+    ],
+    "wires": [
+        {
+            "sourceGate": "gate_0",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_3",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_0",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_4",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_1",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_4",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_3",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_5",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_2",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_5",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_4",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_6",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_5",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_6",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_6",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_7",
+            "targetPinIndex": 0
+        }
+    ]
+}

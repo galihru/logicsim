@@ -1,0 +1,58 @@
+{
+    "gates": [
+        {
+            "id": "gate_0",
+            "type": "INPUT",
+            "x": 50,
+            "y": 100,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_1",
+            "type": "INPUT",
+            "x": 50,
+            "y": 200,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_2",
+            "type": "AND",
+            "x": 200,
+            "y": 150,
+            "outputValues": [
+                0
+            ]
+        },
+        {
+            "id": "gate_3",
+            "type": "OUTPUT",
+            "x": 350,
+            "y": 150,
+            "outputValues": []
+        }
+    ],
+    "wires": [
+        {
+            "sourceGate": "gate_0",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_2",
+            "targetPinIndex": 0
+        },
+        {
+            "sourceGate": "gate_1",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_2",
+            "targetPinIndex": 1
+        },
+        {
+            "sourceGate": "gate_2",
+            "sourcePinIndex": 0,
+            "targetGate": "gate_3",
+            "targetPinIndex": 0
+        }
+    ]
+}

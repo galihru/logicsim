@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modern Digital Logic Simulator - Design, simulate, and analyze digital logic circuits with interactive visual interface. Features truth tables, Verilog code generation, and real-time circuit simulation.">
+    <meta name="keywords"
+        content="digital logic, circuit simulator, logic gates, boolean algebra, electronics, computer science">
+    <meta name="author" content="Digital Logic Simulator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://digital-logic-simulator.com">
+
+    <title>Digital Logic Simulator - Modern Interface</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Logic Sim">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='192' height='192' fill='%23f8fafc' rx='24'/%3E%3Cpath fill='url(%23g)' d='M24 48h36v24H24zm0 48h36v24H24zm108-48h36v24h-36zm0 48h36v24h-36z'/%3E%3Cpath fill='none' stroke='url(%23g)' stroke-width='6' d='M60 60h42m0 0v24m0-24v-24m30 48h42m0 0v24m0-24v-24M60 108h42m0 0v24m0-24v-24m30 48h42'/%3E%3Ccircle fill='url(%23g)' cx='102' cy='36' r='6'/%3E%3Ccircle fill='url(%23g)' cx='102' cy='84' r='6'/%3E%3Ccircle fill='url(%23g)' cx='102' cy='132' r='6'/%3E%3C/svg%3E">
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M8 16h12v8H8zm0 16h12v8H8zm36-16h12v8H44zm0 16h12v8H44z'/%3E%3Cpath fill='none' stroke='url(%23g)' stroke-width='2' d='M20 20h14m0 0v8m0-8v-8m10 16h14m0 0v8m0-8v-8M20 36h14m0 0v8m0-8v-8m10 16h14'/%3E%3Ccircle fill='url(%23g)' cx='34' cy='12' r='2'/%3E%3Ccircle fill='url(%23g)' cx='34' cy='28' r='2'/%3E%3Ccircle fill='url(%23g)' cx='34' cy='44' r='2'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAL8SURBVHic7ZtLaxNBGIafJhfvN6T4gxQvKF5QvKCIFy9YL1hFxYsXL1hFxYsXL1hFxYsXL1hFxYsXL1hFxYsXL1hFxYsXL1hFxYsXL1hFxYsXL1hF">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="theme-btn" class="theme-btn tooltip-left" title="Switch between light and dark theme"
+            aria-label="Switch between light and dark theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Main App Layout -->
+    <div class="app-container">
+        <!-- Main Content Wrapper -->
+        <div class="main-content">
+            <!-- Left Sidebar - Toolbar -->
+            <aside class="sidebar">
+                <!-- Logo/Header -->
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <i class="fas fa-microchip"></i>
+                        <span>Logic Sim</span>
+                    </div>
+                    <a href="https://github.com/galihru/logicsim" target="_blank" rel="noopener noreferrer"
+                        class="github-link tooltip-top" title="View source code on GitHub"
+                        aria-label="View source code on GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <div class="version">v1.0</div>
+                </div>
+
+                <!-- Scrollable Content -->
+                <div class="sidebar-content">
+
+                    <!-- Logic Gates Card -->
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-puzzle-piece"></i> Logic Gates</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="gates-grid">
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="AND"
+                                    title="AND Gate - Output is 1 only when both inputs are 1">
+                                    <div class="gate-preview and-gate">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>AND</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="OR"
+                                    title="OR Gate - Output is 1 when at least one input is 1">
+                                    <div class="gate-preview or-gate">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>OR</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="NOT"
+                                    title="NOT Gate - Output is opposite of input (inverter)">
+                                    <div class="gate-preview not-gate">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>NOT</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="NAND"
+                                    title="NAND Gate - Output is 0 only when both inputs are 1">
+                                    <div class="gate-preview nand-gate">
+                                        <i class="fas fa-circle-notch"></i>
+                                        <span>NAND</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="NOR"
+                                    title="NOR Gate - Output is 1 only when both inputs are 0">
+                                    <div class="gate-preview nor-gate">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>NOR</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="XOR"
+                                    title="XOR Gate - Output is 1 when inputs are different">
+                                    <div class="gate-preview xor-gate">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>XOR</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="XNOR"
+                                    title="XNOR Gate - Output is 1 when inputs are the same">
+                                    <div class="gate-preview xnor-gate">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>XNOR</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- I/O Components Card -->
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-plug"></i> I/O Components</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="io-grid">
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="INPUT"
+                                    title="Input Source - Provides binary input signals (0 or 1)">
+                                    <div class="gate-preview input-gate">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                        <span>INPUT</span>
+                                    </div>
+                                </div>
+                                <div class="gate-item tooltip-right" draggable="true" data-gate-type="OUTPUT"
+                                    title="Output Display - Shows final output of your circuit">
+                                    <div class="gate-preview output-gate">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span>OUTPUT</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wire Colors Card -->
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-palette"></i> Wire Colors</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="wire-colors">
+                                <div class="color-preset selected" data-color="#48bb78" style="background: #48bb78;"
+                                    title="Green"></div>
+                                <div class="color-preset" data-color="#4299e1" style="background: #4299e1;"
+                                    title="Blue">
+                                </div>
+                                <div class="color-preset" data-color="#ed8936" style="background: #ed8936;"
+                                    title="Orange">
+                                </div>
+                                <div class="color-preset" data-color="#e53e3e" style="background: #e53e3e;" title="Red">
+                                </div>
+                                <div class="color-preset" data-color="#805ad5" style="background: #805ad5;"
+                                    title="Purple">
+                                </div>
+                                <div class="color-preset" data-color="#d69e2e" style="background: #d69e2e;"
+                                    title="Yellow">
+                                </div>
+                            </div>
+                            <label for="custom-wire-color" class="color-input-label">Custom Color Picker</label>
+                            <input type="color" id="custom-wire-color" value="#48bb78" title="Custom Color"
+                                aria-label="Custom wire color picker">
+                            <div class="selected-color-info">
+                                <span>Current:</span>
+                                <div id="current-wire-color" style="background: #48bb78;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls Card -->
+                    <div class="sidebar-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-cogs"></i> Controls</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="controls">
+                                <button class="btn primary tooltip-bottom" id="simulate-btn"
+                                    title="Run simulation to see how your circuit behaves">
+                                    <i class="fas fa-play"></i>
+                                    <span>Simulate</span>
+                                </button>
+                                <button class="btn secondary tooltip-bottom" id="auto-arrange-btn"
+                                    title="Automatically organize gates for better layout">
+                                    <i class="fas fa-magic"></i>
+                                    <span>Auto Arrange</span>
+                                </button>
+                                <button class="btn accent tooltip-bottom" id="clear-btn"
+                                    title="Remove all gates and connections from canvas">
+                                    <i class="fas fa-trash"></i>
+                                    <span>Clear All</span>
+                                </button>
+                                <button class="btn info tooltip-bottom" id="generate-verilog-btn"
+                                    title="Generate Verilog HDL code from your circuit">
+                                    <i class="fas fa-code"></i>
+                                    <span>Generate Verilog</span>
+                                </button>
+                                <div class="file-controls">
+                                    <button class="btn success small tooltip-right" id="save-btn"
+                                        title="Save circuit design to file">
+                                        <i class="fas fa-save"></i>
+                                        <span>Save</span>
+                                    </button>
+                                    <button class="btn success small tooltip-right" id="load-btn"
+                                        title="Load circuit design from file">
+                                        <i class="fas fa-folder-open"></i>
+                                        <span>Load</span>
+                                    </button>
+                                </div>
+
+                                <!-- Tour Button -->
+                                <div class="tour-controls"
+                                    style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                                    <button class="btn primary small tooltip-right" id="start-tour-btn"
+                                        title="Take a guided tour of the simulator features">
+                                        <i class="fas fa-route"></i>
+                                        <span>Take Tour</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Canvas Area -->
+            <main class="main-canvas">
+                <div class="canvas-header">
+                    <div>
+                        <h2><i class="fas fa-draw-polygon"></i> Circuit Designer</h2>
+                    </div>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active tooltip-bottom" id="visual-mode-btn"
+                            title="Visual circuit design mode - drag and drop gates">
+                            <i class="fas fa-mouse-pointer"></i> Visual
+                        </button>
+                        <button class="mode-btn tooltip-bottom" id="code-mode-btn"
+                            title="Code editor mode - write and edit Verilog code">
+                            <i class="fas fa-code"></i> Code
+                        </button>
+                    </div>
+                    <div class="canvas-info">
+                        <div class="info-item">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span id="gate-count">0 gates</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span id="wire-count">0 wires</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <!-- Visual Mode -->
+                    <div class="visual-mode" id="visual-mode">
+                        <div class="canvas-instructions">
+                            <p><i class="fas fa-info-circle"></i> Drag gates from sidebar → Click output pin → Click
+                                input
+                                pin to connect → Set inputs → Simulate</p>
+                        </div>
+                        <div class="canvas" id="canvas"></div>
+                    </div>
+
+                    <!-- Code Mode -->
+                    <div class="code-mode" id="code-mode">
+                        <div class="editor-panel">
+                            <div class="verilog-editor">
+                                <div class="editor-header">
+                                    <h4><i class="fas fa-terminal"></i> Verilog HDL Editor</h4>
+                                    <div class="editor-actions">
+                                        <button class="btn small secondary" id="format-code-btn" title="Format Code">
+                                            <i class="fas fa-indent"></i>
+                                        </button>
+                                        <button class="btn small info" id="validate-code-btn" title="Validate Syntax">
+                                            <i class="fas fa-check-circle"></i>
+                                        </button>
+                                        <button class="btn small success" id="generate-visual-btn"
+                                            title="Generate Visual Circuit">
+                                            <i class="fas fa-magic"></i> Generate Visual
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="editor-container">
+                                    <div class="line-numbers" id="line-numbers">1</div>
+                                    <div class="editor-content">
+                                        <textarea id="verilog-input" placeholder="// Enter your Verilog HDL code here
+// Example:
+module example_circuit(
+    input wire a,
+    input wire b,
+    output wire y
+);
+    assign y = a & b;  // AND gate
+endmodule
+
+// Try typing 'module', 'input', 'output', 'assign' for auto-complete"></textarea>
+                                        <div class="autocomplete-popup" id="autocomplete-popup"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-divider" id="panel-divider"></div>
+
+                        <div class="terminal-panel">
+                            <div class="error-display" id="error-display">
+                                <div class="terminal-header">
+                                    <div class="terminal-title">
+                                        <i class="fas fa-terminal"></i>
+                                        <span>Verilog Compiler Output</span>
+                                    </div>
+                                    <div class="terminal-controls">
+                                        <button class="terminal-btn close" id="close-terminal"></button>
+                                        <button class="terminal-btn minimize" id="minimize-terminal"></button>
+                                        <button class="terminal-btn maximize" id="maximize-terminal"></button>
+                                    </div>
+                                </div>
+                                <div class="terminal-content" id="terminal-content">
+                                    <div class="error-item success">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span class="error-message">Ready to validate Verilog code...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Panel - Results -->
+            <aside class="results-sidebar">
+                <div class="results-header">
+                    <h2><i class="fas fa-chart-bar"></i> Analysis Results</h2>
+                </div>
+
+                <!-- Scrollable Content -->
+                <div class="results-content">
+                    <!-- Input Controls Card -->
+                    <div class="result-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-toggle-on"></i> Input Controls</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="input-values" class="input-controls">
+                                <div class="empty-state">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <p>Add input gates to control values</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulation Results Card -->
+                    <div class="result-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Simulation Results</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="simulation-output" class="simulation-results">
+                                <div class="empty-state">
+                                    <i class="fas fa-play-circle"></i>
+                                    <p>Run simulation to see results</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Truth Table Card -->
+                    <div class="result-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-table"></i> Truth Table</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="truth-table" class="truth-table-container">
+                                <div class="empty-state">
+                                    <i class="fas fa-table"></i>
+                                    <p>Build circuit to generate truth table</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Generated Verilog Card -->
+                    <div class="result-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-code"></i> Generated Verilog</h3>
+                            <button class="btn small" id="copy-verilog-btn" title="Copy to Clipboard"
+                                aria-label="Copy Verilog code to clipboard">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="verilog-container">
+                                <textarea id="verilog-code" readonly placeholder="// Generated Verilog code will appear here
+// You can copy this code to the Verilog Editor for testing"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <!-- Footer with Copyright -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <div class="copyright">
+                    <span>&copy; <span id="current-year">2025</span> GALIH RIDHO UTOMO. All rights reserved.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- Connection Modal -->
+    <div id="connection-modal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-link"></i> Connect Gates</h3>
+            <p>Click on an output pin, then click on an input pin to connect them.</p>
+            <button id="close-modal" class="btn secondary">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing simulation...</p>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/verilog-editor.js"></script>
+    <script src="js/ui-enhancements.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
