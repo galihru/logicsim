@@ -1579,7 +1579,7 @@ class DigitalLogicSimulator {
         }
 
         // Circuit summary
-        resultHTML += '<div style="padding: 15px; background: #f7fafc; border-radius: 8px; border: 1px solid #e2e8f0;">';
+        resultHTML += '<div class="sum-card">';
         resultHTML += '<h4 style="color: #2d3748; margin: 0 0 10px 0;">📊 Circuit Summary</h4>';
         resultHTML += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; color: #4a5568;">
             <div><strong>Total Components:</strong> ${this.gates.length}</div>
