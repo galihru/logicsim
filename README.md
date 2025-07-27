@@ -605,7 +605,7 @@ document.addEventListener('simulationComplete', (event) => {
 
 ```bash
 # Fork and clone
-git clone https://github.com/your-fork/digital-logic-simulator.git
+git clone https://github.com/galihru/logicsim.git
 
 # Create feature branch
 git checkout -b feature/new-gate-type
