@@ -2,6 +2,8 @@
 
 A modern, interactive web-based digital logic circuit simulator with comprehensive educational features, real-time simulation capabilities, and advanced visualization tools. Built as a Progressive Web Application (PWA) for seamless cross-platform experience.
 
+![Gambar](https://github.com/galihru/logicsim/blob/main/ss/Screenshot%202025-08-05%20082444.png)
+
 ## 🎯 Abstract
 
 The Digital Logic Simulator is an advanced educational tool designed to facilitate the understanding of Boolean algebra, digital logic circuits, and combinational/sequential circuit design. This application implements fundamental concepts of computer architecture and digital systems engineering through an intuitive drag-and-drop interface, providing real-time circuit simulation, truth table generation, and Verilog HDL code synthesis.
@@ -942,3 +944,4 @@ DigitalLogicSimulator
 ---
 
 **Built for educational purposes to help students understand digital logic design and the relationship between visual circuit representation and HDL code.**
+
